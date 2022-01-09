@@ -24,6 +24,7 @@ There are some new things that I want to learn and practice with this project:
 15. **Prometheus** and **Grafana**. The last time I used InfluxDB and Grafana, I think that Prometheus has a better integration with Spring Boot.
 16. **Spring Native**. I want to try the underlying GraalVM Native Image builder to create Spring-based microservices compiled to native code. Compared to using the regular Java Virtual Machine, this will result in microservices that can start up almost instantly.
 17. **GitHub Actions**. I've always used Jenkins, now I want to see if there is any additional benefit using GitHub native actions.
+18. **ClickUp**. I've been using Jira for Project Management for the last, maybe, ten years; I want to give ClickUp a chance and see if it really work as well as the ads say.
 
 
 
@@ -35,6 +36,6 @@ This is the project's current tech stack:
 | <img align="left" alt="Java" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" />      Java                                                 | 17                   | Main programming language                |            |
 | <img align="left" alt="Spring" width="40" src="https://raw.githubusercontent.com/github/explore/8ab0be27a8c97992e4930e630e2d68ba8d819183/topics/spring/spring.png" />    Spring Boot | 2.6.2                | Main development framework               |   https://spring.io/projects/spring-boot         |
 | <img align="left" alt="Spring" width="40" src="https://raw.githubusercontent.com/github/explore/8ab0be27a8c97992e4930e630e2d68ba8d819183/topics/spring/spring.png" />  Spring Cloud  | 2021.0.x aka Jubilee | For all the Cloud related infrastructure |      https://spring.io/projects/spring-cloud      |
-| Docker                                                                                                                                                                               | -                    | To run the microservices as containers   |
+| <img align="left" alt="Spring" width="40" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" /> Docker                                                                                                                                                                               | -                    | To run the microservices as containers   |
 ||||
 ||||
