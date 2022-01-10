@@ -24,7 +24,9 @@ There are some new things that I want to learn and practice with this project:
 15. **Prometheus** and **Grafana**. The last time I used InfluxDB and Grafana, I think that Prometheus has a better integration with Spring Boot.
 16. **Spring Native**. I want to try the underlying GraalVM Native Image builder to create Spring-based microservices compiled to native code. Compared to using the regular Java Virtual Machine, this will result in microservices that can start up almost instantly.
 17. **GitHub Actions**. I've always used Jenkins, now I want to see if there is any additional benefit using GitHub native actions.
-
+18. **[Miro](https://miro.com/)**. To model and diagram processes.
+19. **[Structurizr](https://structurizr.com/help)**. To model components. I'm a big fan of the C4 model but have never tried Structurizr, I wouldn't say I like the user interface, but I'll give it a chance.
+20. **[Ilograph](https://www.ilograph.com/)**. To document tech specs and the internal structure of some components. It is going to be the first time that I use it, so I don't really know what to spect. 
 
 
 ## Tech Stack
