@@ -26,7 +26,8 @@ There are some new things that I want to learn and practice with this project:
 17. **GitHub Actions**. I've always used Jenkins, now I want to see if there is any additional benefit using GitHub native actions.
 18. **[Miro](https://miro.com/)**. To model and diagram processes.
 19. **[Structurizr](https://structurizr.com/help)**. To model components. I'm a big fan of the C4 model but have never tried Structurizr, I wouldn't say I like the user interface, but I'll give it a chance.
-20. **[Ilograph](https://www.ilograph.com/)**. To document tech specs and the internal structure of some components. It is going to be the first time that I use it, so I don't really know what to spect. 
+20. **[Ilograph](https://www.ilograph.com/)**. To document tech specs and the internal structure of some components. It is going to be the first time that I use it, so I don't really know what to spect.
+21. **ClickUp**. I've been using Jira for Project Management for the last, maybe, ten years; I want to give ClickUp a chance and see if it really works as well as the ads say.
 
 
 ## Tech Stack
