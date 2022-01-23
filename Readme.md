@@ -1,3 +1,5 @@
+[![CI](https://github.com/kumo829/StudentsProfileManager/actions/workflows/gradle.yml/badge.svg)](https://github.com/kumo829/StudentsProfileManager/actions/workflows/gradle.yml)
+
 # Students Information and Profile System
 
 This is a new project that I'll use to learn and update my knowledge about the latest version of Spring Cloud to build microservices.
