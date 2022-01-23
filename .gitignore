@@ -4,16 +4,6 @@
 /.env
 
 ######################
-# Gradle
-######################
-.gradle
-*/**/gradle/
-gradlew.bat
-*/**/build/
-!gradle/wrapper/gradle-wrapper.jar
-
-
-######################
 # Eclipse
 ######################
 *.pydevproject
@@ -86,3 +76,12 @@ local.properties
 *.*~
 *~
 .merge_file*
+
+
+######################
+# Gradle
+######################
+.gradle
+*/**/gradle/
+*/**/build/
+!gradle/wrapper/**
