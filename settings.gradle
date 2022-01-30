@@ -1,2 +1,14 @@
+
+pluginManagement {
+    repositories {
+        maven { url 'https://repo.spring.io/release' }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = 'students-profile'
-include 'commons-errors'
+include ':commons-errors'
+include 'account-service'
+
+project(':account-service').projectDir = file('microservices/account-service')

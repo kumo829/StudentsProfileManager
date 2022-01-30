@@ -1,0 +1,64 @@
+
+
+description = 'Provides functionality for creating an account.'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+
+ext {
+    set('testcontainersVersion', "1.16.2")
+}
+
+dependencies {
+    implementation project(':commons-errors')
+    annotationProcessor 'org.projectlombok:lombok'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    compileOnly 'org.projectlombok:lombok'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    implementation 'io.r2dbc:r2dbc-pool'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'dev.miku:r2dbc-mysql'
+    implementation 'mysql:mysql-connector-java'
+
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'com.h2database:h2'
+    testImplementation 'io.r2dbc:r2dbc-h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:mysql'
+    testImplementation 'org.testcontainers:r2dbc'
+    testImplementation 'org.flywaydb:flyway-core'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+bootJar {
+    enabled = true
+}

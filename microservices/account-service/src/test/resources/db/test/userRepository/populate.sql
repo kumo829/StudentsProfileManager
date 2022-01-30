@@ -1,0 +1,2 @@
+INSERT INTO `accounts` (`id`, `first_name`, `last_name`, `username`, `password`) values (1, 'John', 'Johnson', 'john123@gmail.com', 'asdf87df9adfhjasfa');
+INSERT INTO `accounts` (`id`, `first_name`, `last_name`, `username`, `password`) values (2, 'Pat', 'Johnson', 'pat456@gmail.com', 'kn3klñdf809asd8ffa');
