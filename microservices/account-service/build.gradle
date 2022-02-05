@@ -1,4 +1,7 @@
-
+plugins {
+    id 'org.flywaydb.flyway' version "8.4.2"
+//    id 'org.springframework.experimental.aot' version '0.11.1'
+}
 
 description = 'Provides functionality for creating an account.'
 
@@ -15,6 +18,16 @@ configurations {
     }
 }
 
+flyway {
+    url = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"
+    user = "sa"
+//    password = "abc123"
+    schemas = ["DBNAME"]
+    /*url = "${ACCOUNTS_DB_URL}"
+    user = "${ACCOUNTS_DB_USER}"
+    password = "${ACCOUNTS_DB_PASS}"
+    schemas = ["${ACCOUNTS_DB_SCHEMA}"]*/
+}
 
 ext {
     set('testcontainersVersion', "1.16.2")
@@ -58,6 +71,13 @@ dependencyManagement {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+//tasks.test.dependsOn("flywayMigrate")
+
+//bootBuildImage {
+//    builder = 'paketobuildpacks/builder:tiny'
+//    environment = ['BP_NATIVE_IMAGE': 'true']
+//}
 
 bootJar {
     enabled = true

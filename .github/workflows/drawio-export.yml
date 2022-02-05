@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths:
-      - .diagrams/**.drawio
+      - "**.drawio"
+      - .github/workflows/drawio-export.yml
 concurrency:
   group: drawio-export-${{ github.ref }}
   cancel-in-progress: true
@@ -22,6 +23,7 @@ jobs:
       - name: Export drawio files to png files
         uses: rlespinasse/drawio-export-action@v2
         with:
+          path: .diagrams
           format: png
           transparent: false
           output: .github/assets/img

@@ -1,3 +1,6 @@
+# https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+#https://livebook.manning.com/book/cloud-native-spring-in-action/chapter-1/v-6/1
+#https://github.com/ThomasVitale/cloud-native-spring-in-action
 
 logging:
   level:
@@ -16,4 +19,4 @@ spring:
     baseline-on-migrate: true
     user: sa
     password:
-
+#    locations: "classpath:db/migration/{vendor}"
