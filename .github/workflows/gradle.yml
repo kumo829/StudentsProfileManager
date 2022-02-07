@@ -20,10 +20,16 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
+
     - name: Build with Gradle
       uses: gradle/gradle-build-action@4137be6a8bf7d7133955359dbd952c0ca73b1021
       with:
         arguments: build
+
+    - name: Checkout sources
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: Export drawio files to png files
       uses: rlespinasse/drawio-export-action@v2
