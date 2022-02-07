@@ -1,4 +1,4 @@
-package com.javatutoriales.profiles.account.model;
+package com.javatutoriales.profiles.account.persistence;
 
 import lombok.Builder;
 import lombok.Data;

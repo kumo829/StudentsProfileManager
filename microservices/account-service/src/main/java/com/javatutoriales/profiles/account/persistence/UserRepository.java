@@ -1,12 +1,10 @@
-package com.javatutoriales.profiles.account;
+package com.javatutoriales.profiles.account.persistence;
 
-import com.javatutoriales.profiles.account.model.UserEntity;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
+import reactor.core.publisher.Mono;
 
 @Repository
 public interface UserRepository extends ReactiveCrudRepository<UserEntity, Long> {
-    Optional<UserEntity> findByUsername(String username);
+    Mono<UserEntity> findByUsername(String username);
 }

@@ -1,9 +1,9 @@
-package com.javatutoriales.profiles.account.integration;
+package com.javatutoriales.profiles.account.integration.repository;
 
-import com.javatutoriales.profiles.account.UserRepository;
+import com.javatutoriales.profiles.account.persistence.UserRepository;
 import com.javatutoriales.profiles.account.config.DataSourceConfig;
 import com.javatutoriales.profiles.account.config.FlywayConfig;
-import com.javatutoriales.profiles.account.model.UserEntity;
+import com.javatutoriales.profiles.account.persistence.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;

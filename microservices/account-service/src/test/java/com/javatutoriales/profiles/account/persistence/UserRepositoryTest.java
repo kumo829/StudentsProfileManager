@@ -1,9 +1,7 @@
 package com.javatutoriales.profiles.account.persistence;
 
-import com.javatutoriales.profiles.account.UserRepository;
 import com.javatutoriales.profiles.account.config.DataSourceConfig;
 import com.javatutoriales.profiles.account.config.FlywayConfig;
-import com.javatutoriales.profiles.account.model.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,22 +9,21 @@ import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
-
-import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataR2dbcTest
 @Import({FlywayConfig.class, DataSourceConfig.class})
-@Sql(scripts = "classpath:db/test/userRepository/populate.sql")
 class UserRepositoryTest {
 
     @Autowired
     UserRepository repository;
 
     @Test
+    @Sql(scripts = "classpath:db/test/userRepository/populate.sql")
     void testUserIdNotFirstOne_whenOtherUsersInDatabase() {
         UserEntity user = UserEntity.builder()
                 .firstName("test")
@@ -44,6 +41,7 @@ class UserRepositoryTest {
 
 
     @Test
+    @Sql(scripts = "classpath:db/test/userRepository/populate.sql")
     void testException_whenUsernameAlreadyExists() {
         UserEntity user = UserEntity.builder()
                 .firstName("John")
@@ -61,16 +59,17 @@ class UserRepositoryTest {
 
     @Test
     void testSave50Users() {
-
         Publisher<UserEntity> setup = Flux.range(1, 50).map(index -> UserEntity.builder()
-                .firstName("Name " + index)
-                .lastName("LastName " + index)
-                .username("user" + index + "@gmail.com")
-                .password("asdf87df9adfhjasfa" + index)
-                .build()).doOnNext(user -> repository.save(user));
+                        .firstName("Name " + index)
+                        .lastName("LastName " + index)
+                        .username("user" + index + "@gmail.com")
+                        .password("asdf87df9adfhjasfa" + index)
+                        .build())
+                .flatMap(user -> repository.save(user)).log();
 
         StepVerifier.create(setup)
-                .recordWith(ArrayList::new)
+                //.consumeNextWith(userEntity -> assertThat(userEntity.getId()).isPositive())
+                //.recordWith(ArrayList::new)
                 .expectNextCount(50)
 //                .consumeRecordedWith(userList -> {
 //
