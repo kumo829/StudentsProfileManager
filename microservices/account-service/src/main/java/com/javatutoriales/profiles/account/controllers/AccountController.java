@@ -32,9 +32,9 @@ public class AccountController {
     }
 
     @PostMapping
-    Mono<ResponseEntity<UserResponse>> registerAccount(@RequestBody @Valid UserRequest user) {
+    Mono<ResponseEntity<UserResponse>> registerAccount(@RequestBody @Valid Mono<UserRequest> user) {
         return userService
-                .saveUser(userMapper.requestToModel(user))
+                .saveUser(user.map(userMapper::requestToModel))
                 .map(userMapper::modelToResponse)
                 .map(userResponse -> ResponseEntity
                         .created(URI.create(API_URL + userResponse.id()))

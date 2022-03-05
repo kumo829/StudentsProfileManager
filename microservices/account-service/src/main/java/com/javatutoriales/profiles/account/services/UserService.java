@@ -10,7 +10,7 @@ public interface UserService {
 
     Mono<User> getUser(Long id);
 
-    Mono<User> saveUser(User user);
+    Mono<User> saveUser(Mono<User> user);
 
     Flux<User> getAll();
 }

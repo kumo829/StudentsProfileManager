@@ -31,8 +31,9 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Mono<User> saveUser(User user) {
-        return userRepository.save(userMapper.modelToEntity(user))
+    public Mono<User> saveUser(Mono<User> user) {
+        return user.map(userMapper::modelToEntity)
+                .flatMap(userRepository::save)
                 .map(userMapper::entityToModel);
 
     }

@@ -1,4 +1,5 @@
 [![CI](https://github.com/kumo829/StudentsProfileManager/actions/workflows/gradle.yml/badge.svg)](https://github.com/kumo829/StudentsProfileManager/actions/workflows/gradle.yml)
+[![Open Source](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://opensource.org/)
 
 # Students Information and Profile System
 
@@ -42,3 +43,13 @@ This is the project's current tech stack:
 | <img align="left" alt="Spring" width="40" src="https://raw.githubusercontent.com/github/explore/8ab0be27a8c97992e4930e630e2d68ba8d819183/topics/spring/spring.png" />  Spring Cloud  | 2021.0.x aka Jubilee | For all the Cloud related infrastructure |      https://spring.io/projects/spring-cloud      |
 | <img align="left" alt="Spring" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gradle/gradle-plain.svg" /> Gradle                                                 | 7.3                  | Build automation tool                    |  https://docs.gradle.org/current/userguide/structuring_software_products.html |
 | <img align="left" alt="Spring" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" /> Docker                                              | 20.10                | To run the microservices as containers   |
+
+
+## Testing
+For the testing I'm using the, now classical, combination of JUnit 5 + BDD Mockito + AssertJ. 
+
+To name the test methods I'm using the naming convention **Given_When_Then**: [**given**PreCondition_]**when**MethodUnderTest_**then**ExpectedBehavior. For example:
+
+- **given**AnUserWithAnEmptyPassword_**when**TryingToCreateANewUser_**then**ThrowsIllegalArgumentException.
+
+To name the Test clases, I'm adding the postfix **Test** after the name of the class under test, and for intetgration tests I'm using the postfix **IntegrationTest**. Also, for Test Suites the naming convention is adding the postfix **SuiteTest**. 
