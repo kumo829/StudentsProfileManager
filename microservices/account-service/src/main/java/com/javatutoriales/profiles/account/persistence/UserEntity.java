@@ -6,6 +6,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.ZonedDateTime;
+
 
 @Data
 @Table("accounts")
@@ -27,4 +29,19 @@ public class UserEntity {
 
     @Column("password")
     private String password;
+
+    @Column("created_on")
+    private ZonedDateTime createdOn;
+
+    @Column("disabled")
+    private boolean disabled;
+
+    @Column("disabled_on")
+    private ZonedDateTime disabledOn;
+
+    @Column("deleted")
+    private boolean deleted;
+
+    @Column("deleted_on")
+    private ZonedDateTime deletedOn;
 }
