@@ -10,9 +10,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.BDDAssertions.then;
 
 @DataR2dbcTest
 @Import({FlywayConfig.class, DataSourceConfig.class})
@@ -23,7 +25,7 @@ class UserRepositoryTest {
 
     @Test
     @Sql(scripts = "classpath:db/test/userRepository/populate.sql")
-    void testUserIdNotFirstOne_whenOtherUsersInDatabase() {
+    void givenTwoExistingUsersInTheDatabase_whenSavingANewUser_thenGeneratedIdIsThree() {
         UserEntity user = UserEntity.builder()
                 .firstName("test")
                 .lastName("test")
@@ -31,7 +33,7 @@ class UserRepositoryTest {
                 .password("pass")
                 .build();
 
-        Publisher<UserEntity> setup = repository.save(user);
+        Mono<UserEntity> setup = repository.save(user);
 
         StepVerifier.create(setup)
                 .consumeNextWith(userEntity -> assertThat(user.getId()).isPositive().isEqualTo(3))
@@ -41,7 +43,7 @@ class UserRepositoryTest {
 
     @Test
     @Sql(scripts = "classpath:db/test/userRepository/populate.sql")
-    void testException_whenUsernameAlreadyExists() {
+    void givenAnExistingUserInTheDatabase_whenTryToSaveANewUserWithAnExistingUsername_thenAnDataIntegrityViolationExceptionIsThrown() {
         UserEntity user = UserEntity.builder()
                 .firstName("John")
                 .lastName("Johnson")
@@ -49,7 +51,7 @@ class UserRepositoryTest {
                 .password("asdf87df9adfhjasfa")
                 .build();
 
-        Publisher<UserEntity> setup = repository.save(user);
+        Mono<UserEntity> setup = repository.save(user);
 
         StepVerifier.create(setup)
                 .expectErrorMatches(throwable -> throwable instanceof DataIntegrityViolationException)
@@ -57,14 +59,14 @@ class UserRepositoryTest {
     }
 
     @Test
-    void testSave50Users() {
-        Publisher<UserEntity> setup = Flux.range(1, 50).map(index -> UserEntity.builder()
+    void whenCallingSaveUser50TimesWith50NewUsers_then50NewUsersAreStored() {
+        Flux<UserEntity> setup = Flux.range(1, 50).map(index -> UserEntity.builder()
                         .firstName("Name " + index)
                         .lastName("LastName " + index)
                         .username("user" + index + "@gmail.com")
                         .password("asdf87df9adfhjasfa" + index)
                         .build())
-                .flatMap(user -> repository.save(user)).log();
+                .flatMap(repository::save);
 
         StepVerifier.create(setup)
                 //.consumeNextWith(userEntity -> assertThat(userEntity.getId()).isPositive())
@@ -75,5 +77,6 @@ class UserRepositoryTest {
 //                })
                 .verifyComplete();
 
+        then(repository.count().block()).isEqualTo(50);
     }
 }
