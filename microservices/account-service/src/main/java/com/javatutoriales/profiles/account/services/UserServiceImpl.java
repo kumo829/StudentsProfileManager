@@ -50,7 +50,6 @@ class UserServiceImpl implements UserService {
     @Override
     public Mono<User> getUser(Long id) {
         return userRepository.findById(id)
-                .filter(userEntity -> !userEntity.isDeleted())
                 .map(userMapper::entityToModel)
                 .onErrorMap(DataIntegrityViolationException.class, throwable -> new NotFoundException("User not found: " + id, throwable));
     }
@@ -73,7 +72,7 @@ class UserServiceImpl implements UserService {
     public Mono<User> updateUser(Long id, Mono<User> user) {
         return userRepository.findById(id)
                 .flatMap(u -> user.map(userMapper::modelToEntity))
-                .doOnNext(modelUser -> modelUser.setId(id))
+                .doOnNext(entityUser -> entityUser.setId(id))
                 .flatMap(userRepository::save)
                 .map(userMapper::entityToModel);
     }
