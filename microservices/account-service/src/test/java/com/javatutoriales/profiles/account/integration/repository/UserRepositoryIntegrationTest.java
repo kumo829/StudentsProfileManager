@@ -50,7 +50,7 @@ class UserRepositoryIntegrationTest {
 
     @Test
     @Sql(scripts = "classpath:db/test/userRepository/populate.sql")
-    void testRepository() {
+    void givenTwoExistingUsersInTheDatabase_whenSavingANewUser_thenGeneratedIdIsThree() {
         UserEntity user = UserEntity.builder()
                 .firstName("test")
                 .lastName("test")

@@ -3,7 +3,6 @@ package com.javatutoriales.profiles.account.persistence;
 import com.javatutoriales.profiles.account.config.DataSourceConfig;
 import com.javatutoriales.profiles.account.config.FlywayConfig;
 import org.junit.jupiter.api.Test;
-import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
 import org.springframework.context.annotation.Import;
@@ -59,6 +58,7 @@ class UserRepositoryTest {
     }
 
     @Test
+    @Sql(scripts = "classpath:db/test/userRepository/populate.sql")
     void whenCallingSaveUser50TimesWith50NewUsers_then50NewUsersAreStored() {
         Flux<UserEntity> setup = Flux.range(1, 50).map(index -> UserEntity.builder()
                         .firstName("Name " + index)
@@ -77,6 +77,6 @@ class UserRepositoryTest {
 //                })
                 .verifyComplete();
 
-        then(repository.count().block()).isEqualTo(50);
+        then(repository.count().block()).isEqualTo(52);
     }
 }
